@@ -49,3 +49,8 @@ I like to use the `user-event` library for user interactions to ensure that they
 Now I can call the passed in function to close the modal through the close button, my next step is to move to being able to call the close functionality when the user presses the Esc key.
 
 I chose to add an event listener on the window for the keydown of the escape key, to ensure that the event would be captured regardless of what is in focus.
+
+1.m.
+My last test case around the closing of the dialog is to close the modal through clicking outside of the dialog window. I'm introducing a backgdrop to the modal, which when styled will darken the rest of the page. This will be an ideal area to capture the intended clicks to close the modal. There is no real accessible role for this, and so I've used a test-id for this.
+
+Due to event propogation I need to test that modal closes only when the backdrop is the target of the click.

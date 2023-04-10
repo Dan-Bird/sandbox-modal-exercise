@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export const Modal = ({ children, title, isOpen, onClose }) => {
+  const backdropRef = useRef(null);
+
+  const handleCloseFromBackdrop = e =>
+    e.target === backdropRef.current && onClose();
+
   useEffect(() => {
     const handleClose = e => e.key === 'Escape' && onClose();
 
@@ -10,10 +15,16 @@ export const Modal = ({ children, title, isOpen, onClose }) => {
   }, [onClose]);
 
   return isOpen ? (
-    <div role="dialog" aria-modal="true" aria-labelledby="dialog-heading">
-      <button onClick={onClose}>Close</button>
-      <h2 id="dialog-heading">{title}</h2>
-      {children}
+    <div
+      ref={backdropRef}
+      data-testid="dialog-backdrop"
+      onClick={handleCloseFromBackdrop}
+    >
+      <div role="dialog" aria-modal="true" aria-labelledby="dialog-heading">
+        <button onClick={onClose}>Close</button>
+        <h2 id="dialog-heading">{title}</h2>
+        {children}
+      </div>
     </div>
   ) : null;
 };

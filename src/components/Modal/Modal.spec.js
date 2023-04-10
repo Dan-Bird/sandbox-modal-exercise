@@ -72,4 +72,17 @@ describe('Modal', () => {
     expect(mockCloseFunction).toHaveBeenCalled();
     expect(mockCloseFunction).toHaveBeenCalledTimes(1);
   });
+
+  it('offers a way to close through clicking outside the modal', () => {
+    const mockCloseFunction = jest.fn();
+
+    setup({ onClose: mockCloseFunction });
+
+    user.click(screen.getByRole('heading'));
+    expect(mockCloseFunction).not.toHaveBeenCalled();
+
+    user.click(screen.getByTestId('dialog-backdrop'));
+    expect(mockCloseFunction).toHaveBeenCalled();
+    expect(mockCloseFunction).toHaveBeenCalledTimes(1);
+  });
 });
