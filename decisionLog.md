@@ -1,4 +1,8 @@
+## Introduction
+
 Here I will journey my decisions as I progress through the exercise. Each entry near enough matches up to each commit made within the repo, and so you should be able to follow along commit by commit to see my progress at each step.
+
+## Journal
 
 1.a.
 I would like to test-drive the implementation to ensure I create code that is both lean, and designed to be tested. I can ensure I add all required functionality step by step.
@@ -63,3 +67,33 @@ I like to use CSS modules to scope styles more closely. It also enables the extr
 As mentioned before the backdrop has been styled to dim the surrounding area.
 
 I've added a `visuallyHidden` class to the text within the button, so that screen readers can pronounce something more useful to the user, but visually the label doesn't appear. This is a class I would extract out seperately as it could be used across other areas of the codebase.
+
+## Additional Thoughts
+
+There is still much to consider with this component, and with it's styling.
+
+My first thought is that it would be useful to use Typescript over Javascript in order to gain a better developer experience through intellisense and knowing which props are required or optional. It would also reduce bugs through it's tighter typing. Alternatively, we could use PropTypes here but Typescript seems to me to be the best choice given the additional benefits it has.
+
+If this was to be in some sort of component library used across teams, I'd also consider something like Storybook to document the component use cases and props, and also give a directory of components with visuals.
+
+Some considerations around the Modal component specifically:
+
+- To apply with WCAG guidelines we need to set which element has the initial focus. Since the content is dynamic, my first thought is to use a prop, or pass through a ref so that the component that gives the Modal children can describe which element should have initial focus.
+
+- On the topic of focus, we would also need to introduce a focus lock around the content of the modal so that tabbing through elements would loop through the modal content and not through elements on the page behind the modal. For this we could look at something like `react-focus-lock`.
+
+- It would also be good to prevent scrolling of the page behind the modal for a better UX. `react-remove-scroll` could be a good choice as an easy abstraction to use.
+
+- We need to consider what happens if we need more than one modal on-screen at a time. This wouldn't be possible with the current solution as we reference and `id` for the `aria-labelledby` attribute. Since the ID is hard-coded it wouldn't be best practice if more than one of the same ID were to be on the page. We could look at newer React hooks like `useId`, generate one ourselves or even look at using React Refs.
+
+- I think it could be best to create a seperate html root in which Modals, Dialogs and pop-ups can be rendered into. The additional layer would mean there would be less fighting to ensure the modal stays on top of whatever content is on the page. The creation of the root could possibly be done programatically from the Modal component.
+
+e.g. `
+
+<div id="root"></div>
+<div id="modal-root"></div>
+`
+
+- We would need to think about transitions for the modal. Instead of just appearing and disappearing. Transitions can improve the user experience of the application, but depending on how they are done we would need to make alterations to our tests to work around the time it takes for the transitions to complete.
+
+- There is no responsive thinking so far on the Modal. The styling does not consider smaller screens - we could look at the padding especially on a smaller width device. There is also the consideration of someone pinching to zoom on mobile.
