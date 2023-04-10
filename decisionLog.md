@@ -13,7 +13,7 @@ I want to use the `<dialog>` tag so that we can leverage the work already done b
 Added the `jest-axe` package to safeguard against any obvious a11y mistakes that can be picked up.
 
 1.c.
-As per MDN's guidelines, a modal window should contain the `aria-modal` attribute. I've created a test to cover this.
+As per [MDN's guidelines](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog), a modal window should contain the `aria-modal` attribute. I've created a test to cover this.
 
 1.d.
 The next simplist thing I could think to test, was that the Modal can render content passed to it. I created a test case for this and satisfied the test.
