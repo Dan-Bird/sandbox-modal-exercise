@@ -24,3 +24,6 @@ My next test case is that the modal contains a label. This could be the title of
 I need to revert my use of the `<dialog>` to a plain div, becuase it seems the unsupported dialog tag within JestDOM prevents any roles being found within it, i.e. `screen.getByRole('heading')` will fail. I'll revert to use a div tag, and ensure that the dialog role is assigned. This allow me to test the presence of the dialog through the more recommended `getByRole` assertion.
 
 My jest-axe coverage also alerts me to ensure the aria-labelledby attribute references the title.
+
+1.f.
+I can see some repetition in the rendering of my tests, and so I can refactor here to remove duplication.
