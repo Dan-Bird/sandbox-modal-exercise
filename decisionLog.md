@@ -44,3 +44,8 @@ My first test will be to ensure a close button exists.
 I like to keep the modal component only responsible for one thing: presenting content. So far this is true, and the rendering of the modal is determined by it's parent. Therefore, the closing of the modal should also be determined by it's parent. For my next test case, I want to be able to pass a function into the modal component that will be responsible for changing the state of whether it's shown or not. I can just use a mock function for this to track that it has been called successfully when the close button is clicked.
 
 I like to use the `user-event` library for user interactions to ensure that they are as close to the real thing as possible.
+
+1.l
+Now I can call the passed in function to close the modal through the close button, my next step is to move to being able to call the close functionality when the user presses the Esc key.
+
+I chose to add an event listener on the window for the keydown of the escape key, to ensure that the event would be captured regardless of what is in focus.

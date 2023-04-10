@@ -61,4 +61,15 @@ describe('Modal', () => {
     expect(mockCloseFunction).toHaveBeenCalled();
     expect(mockCloseFunction).toHaveBeenCalledTimes(1);
   });
+
+  it('offers a way to close through the Esc key', () => {
+    const mockCloseFunction = jest.fn();
+
+    setup({ onClose: mockCloseFunction });
+
+    user.keyboard('{Escape}');
+
+    expect(mockCloseFunction).toHaveBeenCalled();
+    expect(mockCloseFunction).toHaveBeenCalledTimes(1);
+  });
 });
