@@ -4,8 +4,8 @@ import { Modal } from './Modal';
 import { axe } from 'jest-axe';
 
 const MODAL_HEADING = 'React Modal';
-const setup = ({ children = null } = {}) =>
-  render(<Modal title={MODAL_HEADING} children={children} />);
+const setup = ({ children = null, isOpen = true } = {}) =>
+  render(<Modal title={MODAL_HEADING} children={children} isOpen={isOpen} />);
 
 describe('Modal', () => {
   describe('A11y', () => {
@@ -16,7 +16,7 @@ describe('Modal', () => {
     });
 
     it('should contain the "aria-modal" attribute for WCAG compliance', () => {
-      setup();
+      setup({ isOpen: true });
       const modal = screen.getByRole('dialog');
 
       expect(modal).toHaveAttribute('aria-modal', 'true');
@@ -36,5 +36,10 @@ describe('Modal', () => {
     expect(
       screen.getByRole('heading', { name: MODAL_HEADING })
     ).toBeInTheDocument();
+  });
+
+  it('is not open by default', () => {
+    setup({ isOpen: false });
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
   });
 });

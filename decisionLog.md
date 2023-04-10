@@ -12,18 +12,21 @@ I want to use the `<dialog>` tag so that we can leverage the work already done b
 1.d.
 Added the `jest-axe` package to safeguard against any obvious a11y mistakes that can be picked up.
 
-1.c.
+1.e.
 As per [MDN's guidelines](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog), a modal window should contain the `aria-modal` attribute. I've created a test to cover this.
 
-1.d.
+1.f.
 The next simplist thing I could think to test, was that the Modal can render content passed to it. I created a test case for this and satisfied the test.
 
-1.e.
+1.g.
 My next test case is that the modal contains a label. This could be the title of the Modal window. I test that given the title prop, a heading of that title is rendered.
 
 I need to revert my use of the `<dialog>` to a plain div, becuase it seems the unsupported dialog tag within JestDOM prevents any roles being found within it, i.e. `screen.getByRole('heading')` will fail. I'll revert to use a div tag, and ensure that the dialog role is assigned. This allow me to test the presence of the dialog through the more recommended `getByRole` assertion.
 
 My jest-axe coverage also alerts me to ensure the aria-labelledby attribute references the title.
 
-1.f.
+1.h.
 I can see some repetition in the rendering of my tests, and so I can refactor here to remove duplication.
+
+1.i.
+My next case is to ensure that the Modal can be rendered on demand, so that it's not always present on initial render.
