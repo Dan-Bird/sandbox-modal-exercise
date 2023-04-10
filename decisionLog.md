@@ -14,3 +14,6 @@ Added the `jest-axe` package to safeguard against any obvious a11y mistakes that
 
 1.c.
 As per MDN's guidelines, a modal window should contain the `aria-modal` attribute. I've created a test to cover this.
+
+1.d.
+The next simplist thing I could think to test, was that the Modal can render content passed to it. I created a test case for this and satisfied the test.

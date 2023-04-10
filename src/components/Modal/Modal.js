@@ -1,1 +1,5 @@
-export const Modal = () => <dialog data-testid="dialog" aria-modal="true" />;
+export const Modal = ({ children }) => (
+  <dialog data-testid="dialog" aria-modal="true">
+    {children}
+  </dialog>
+);

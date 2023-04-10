@@ -18,4 +18,12 @@ describe('Modal', () => {
       expect(modal).toHaveAttribute('aria-modal', 'true');
     });
   });
+
+  it('renders the content passed to it', () => {
+    const mockContent = <div>Mock Content</div>;
+
+    render(<Modal>{mockContent}</Modal>);
+
+    expect(screen.getByText(/mock content/i)).toBeInTheDocument();
+  });
 });
