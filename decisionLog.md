@@ -1,4 +1,4 @@
-Here I will journey my decisions as I progress through the exercise.
+Here I will journey my decisions as I progress through the exercise. Each entry near enough matches up to each commit made within the repo, and so you should be able to follow along commit by commit to see my progress at each step.
 
 1.a.
 I would like to test-drive the implementation to ensure I create code that is both lean, and designed to be tested. I can ensure I add all required functionality step by step.
@@ -30,3 +30,12 @@ I can see some repetition in the rendering of my tests, and so I can refactor he
 
 1.i.
 My next case is to ensure that the Modal can be rendered on demand, so that it's not always present on initial render.
+
+1.j.
+Now I have asserted I can open the modal on demand, I need a way to close it again. Within my current implementation, the rendering of the Modal is determined by the boolean value of it's `isOpen` prop. There are a few cases to consider when closing the modal:
+
+- We will need a close button within the modal itself for users to click.
+- We will need to allow users to press the Esc key to close the modal
+- We will need to allow users to click outside of the modal to close it. This one is a common feature with most modals and so users would already have a learned behaviour and expectation for this to work.
+
+My first test will be to ensure a close button exists.

@@ -42,4 +42,9 @@ describe('Modal', () => {
     setup({ isOpen: false });
     expect(screen.queryByRole('heading')).not.toBeInTheDocument();
   });
+
+  it('renders a close button', () => {
+    setup();
+    expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument();
+  });
 });
