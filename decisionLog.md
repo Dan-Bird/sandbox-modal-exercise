@@ -88,11 +88,11 @@ Some considerations around the Modal component specifically:
 
 - I think it could be best to create a seperate html root in which Modals, Dialogs and pop-ups can be rendered into. The additional layer would mean there would be less fighting to ensure the modal stays on top of whatever content is on the page. The creation of the root could possibly be done programatically from the Modal component.
 
-e.g. `
-
+e.g.
+```html
 <div id="root"></div>
 <div id="modal-root"></div>
-`
+```
 
 - We would need to think about transitions for the modal. Instead of just appearing and disappearing. Transitions can improve the user experience of the application, but depending on how they are done we would need to make alterations to our tests to work around the time it takes for the transitions to complete.
 
