@@ -17,3 +17,10 @@ As per [MDN's guidelines](https://developer.mozilla.org/en-US/docs/Web/HTML/Elem
 
 1.d.
 The next simplist thing I could think to test, was that the Modal can render content passed to it. I created a test case for this and satisfied the test.
+
+1.e.
+My next test case is that the modal contains a label. This could be the title of the Modal window. I test that given the title prop, a heading of that title is rendered.
+
+I need to revert my use of the `<dialog>` to a plain div, becuase it seems the unsupported dialog tag within JestDOM prevents any roles being found within it, i.e. `screen.getByRole('heading')` will fail. I'll revert to use a div tag, and ensure that the dialog role is assigned. This allow me to test the presence of the dialog through the more recommended `getByRole` assertion.
+
+My jest-axe coverage also alerts me to ensure the aria-labelledby attribute references the title.
