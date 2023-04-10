@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Modal = ({ children, title, isOpen }) => {
+export const Modal = ({ children, title, isOpen, onClose }) => {
   return isOpen ? (
     <div role="dialog" aria-modal="true" aria-labelledby="dialog-heading">
-      <button>Close</button>
+      <button onClick={onClose}>Close</button>
       <h2 id="dialog-heading">{title}</h2>
       {children}
     </div>

@@ -1,11 +1,19 @@
 import { render, screen } from '@testing-library/react';
-
-import { Modal } from './Modal';
+import user from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 
+import { Modal } from './Modal';
+
 const MODAL_HEADING = 'React Modal';
-const setup = ({ children = null, isOpen = true } = {}) =>
-  render(<Modal title={MODAL_HEADING} children={children} isOpen={isOpen} />);
+const setup = ({ children = null, isOpen = true, onClose } = {}) =>
+  render(
+    <Modal
+      title={MODAL_HEADING}
+      children={children}
+      isOpen={isOpen}
+      onClose={onClose}
+    />
+  );
 
 describe('Modal', () => {
   describe('A11y', () => {
@@ -43,8 +51,14 @@ describe('Modal', () => {
     expect(screen.queryByRole('heading')).not.toBeInTheDocument();
   });
 
-  it('renders a close button', () => {
-    setup();
-    expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument();
+  it('offers a way to close through a close button', () => {
+    const mockCloseFunction = jest.fn();
+
+    setup({ onClose: mockCloseFunction });
+
+    user.click(screen.getByRole('button', { name: /close/i }));
+
+    expect(mockCloseFunction).toHaveBeenCalled();
+    expect(mockCloseFunction).toHaveBeenCalledTimes(1);
   });
 });

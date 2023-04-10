@@ -39,3 +39,8 @@ Now I have asserted I can open the modal on demand, I need a way to close it aga
 - We will need to allow users to click outside of the modal to close it. This one is a common feature with most modals and so users would already have a learned behaviour and expectation for this to work.
 
 My first test will be to ensure a close button exists.
+
+1.k.
+I like to keep the modal component only responsible for one thing: presenting content. So far this is true, and the rendering of the modal is determined by it's parent. Therefore, the closing of the modal should also be determined by it's parent. For my next test case, I want to be able to pass a function into the modal component that will be responsible for changing the state of whether it's shown or not. I can just use a mock function for this to track that it has been called successfully when the close button is clicked.
+
+I like to use the `user-event` library for user interactions to ensure that they are as close to the real thing as possible.
