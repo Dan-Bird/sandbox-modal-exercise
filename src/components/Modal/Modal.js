@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import styles from './Modal.module.css';
 
 export const Modal = ({ children, title, isOpen, onClose }) => {
   const backdropRef = useRef(null);
@@ -19,11 +20,21 @@ export const Modal = ({ children, title, isOpen, onClose }) => {
       ref={backdropRef}
       data-testid="dialog-backdrop"
       onClick={handleCloseFromBackdrop}
+      className={styles.backdrop}
     >
-      <div role="dialog" aria-modal="true" aria-labelledby="dialog-heading">
-        <button onClick={onClose}>Close</button>
-        <h2 id="dialog-heading">{title}</h2>
-        {children}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-heading"
+        className={styles.dialog}
+      >
+        <button className={styles.closeButton} onClick={onClose}>
+          <span className={styles.visuallyHidden}>Close</span>X
+        </button>
+        <h2 id="dialog-heading" className={styles.title}>
+          {title}
+        </h2>
+        <div>{children}</div>
       </div>
     </div>
   ) : null;

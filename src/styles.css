@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;

@@ -54,3 +54,12 @@ I chose to add an event listener on the window for the keydown of the escape key
 My last test case around the closing of the dialog is to close the modal through clicking outside of the dialog window. I'm introducing a backgdrop to the modal, which when styled will darken the rest of the page. This will be an ideal area to capture the intended clicks to close the modal. There is no real accessible role for this, and so I've used a test-id for this.
 
 Due to event propogation I need to test that modal closes only when the backdrop is the target of the click.
+
+1.n.
+I think now I've covered the basics of the modal I will move on to styling. There a lot of considerations that remain to be made, and I'll detail my thoughts on those at the end of this document.
+
+I like to use CSS modules to scope styles more closely. It also enables the extraction of components over styles.
+
+As mentioned before the backdrop has been styled to dim the surrounding area.
+
+I've added a `visuallyHidden` class to the text within the button, so that screen readers can pronounce something more useful to the user, but visually the label doesn't appear. This is a class I would extract out seperately as it could be used across other areas of the codebase.
