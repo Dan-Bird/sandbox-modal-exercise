@@ -1,1 +1,1 @@
-export const Modal = () => <dialog data-testid="dialog" />;
+export const Modal = () => <dialog data-testid="dialog" aria-modal="true" />;

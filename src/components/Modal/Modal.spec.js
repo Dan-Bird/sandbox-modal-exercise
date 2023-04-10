@@ -10,10 +10,12 @@ describe('Modal', () => {
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
-  });
 
-  it('should render', () => {
-    render(<Modal />);
-    screen.getByTestId('dialog');
+    it('should contain the "aria-modal" attribute for WCAG compliance', () => {
+      render(<Modal />);
+      const modal = screen.getByTestId('dialog');
+
+      expect(modal).toHaveAttribute('aria-modal', 'true');
+    });
   });
 });

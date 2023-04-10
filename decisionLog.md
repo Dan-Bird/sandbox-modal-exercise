@@ -11,3 +11,6 @@ I want to use the `<dialog>` tag so that we can leverage the work already done b
 
 1.d.
 Added the `jest-axe` package to safeguard against any obvious a11y mistakes that can be picked up.
+
+1.c.
+As per MDN's guidelines, a modal window should contain the `aria-modal` attribute. I've created a test to cover this.
